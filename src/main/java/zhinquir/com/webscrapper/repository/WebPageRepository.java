@@ -16,7 +16,8 @@ public interface WebPageRepository extends JpaRepository<WebPage, Integer> {
                     "WHERE UPPER(wp.domain) LIKE UPPER(CONCAT('%', :text, '%')) " +
                     "OR UPPER(wp.description) LIKE UPPER(CONCAT('%', :text, '%')) " +
                     "OR UPPER(wp.title) LIKE UPPER(CONCAT('%', :text, '%')) " +
-                    "OR UPPER(wp.url) LIKE UPPER(CONCAT('%', :text, '%'))"
+                    "OR UPPER(wp.url) LIKE UPPER(CONCAT('%', :text, '%')) "+
+                    "ORDER BY wp.rank ASC"
     )
     List<WebPage> findByText(@Param("text") String text);
 
