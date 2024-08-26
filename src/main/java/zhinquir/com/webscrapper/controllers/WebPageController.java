@@ -1,5 +1,6 @@
 package zhinquir.com.webscrapper.controllers;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class WebPageController {
 
     private final WebPageRepository repository;
@@ -33,6 +35,7 @@ public class WebPageController {
      */
     @GetMapping("/api/search")
     public List<WebPage> search(@RequestParam("query") String query){
+        System.out.println("Buscando....");
         return repository.findByText(query);
     }
 
