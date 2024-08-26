@@ -29,7 +29,8 @@ public class SpiderServiceImpl implements SpiderService {
         String initialLink = "https://elpais.com";
         List<String> links = webScrapperService.getAllLinks(initialLink);
 
-        links.stream().forEach(link -> {
+        // parallel ejecuatar todos los elementos en paralelo usando varios hilos del procesador
+        links.stream().parallel().forEach(link -> {
             webScrapperService.scrapeAndSave(link);
             scrapeLinksAndSave(url);
         });

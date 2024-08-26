@@ -68,7 +68,7 @@ public class WebScrapperServiceImpl implements WebScrapperService {
 
             Document document = Jsoup.connect(url).get(); // Carga pagina
             Elements links = document.select("a[href]"); // Obtiene todos los links de la pagina
-            for (Element link : links) {
+            links.stream().parallel().forEach(link -> {
                 String linkHref =  link.attr("href");
 
                 if(linkHref.startsWith("/"))
@@ -76,7 +76,7 @@ public class WebScrapperServiceImpl implements WebScrapperService {
 
                 if (!results.contains(linkHref))
                     results.add(linkHref);
-            }
+            });
 
         }catch (Exception e){
             System.out.println(e.getMessage());
