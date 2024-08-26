@@ -20,6 +20,7 @@ public interface WebPageRepository extends JpaRepository<WebPage, Integer> {
                     "ORDER BY wp.rank ASC"
     )
     List<WebPage> findByText(@Param("text") String text);
+    WebPage findByUrl(String url);
 
 
 }
